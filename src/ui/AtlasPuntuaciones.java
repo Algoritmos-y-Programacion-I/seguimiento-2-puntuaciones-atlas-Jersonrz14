@@ -58,7 +58,7 @@ public class AtlasPuntuaciones {
 		// Notificación al usuario de los resultados
 
 		 int [][] puntajes = registrarpuntajes( numjugadores, numrondas);
-		 //Calcularymostrarresultados(puntajes);
+		 Calcularymostrarresultados(puntajes);
 
 
 
@@ -80,7 +80,7 @@ public class AtlasPuntuaciones {
 		int numjugadores = puntajes.length;
 		int numrondas = puntajes[0].length;
 
-		//int puntuacionesTotal = new int (numjugadores);
+		
 		int[]puntuacionesTotal = new int[numjugadores];
 		double[]promedios = new double[numjugadores];
 		int jugadorganador = 0;
@@ -92,14 +92,21 @@ public class AtlasPuntuaciones {
 			puntuacionesTotal[i] = calcularSumaTotal(puntajes[i]);
 			promedios[i] = calcularPromedio(puntajes[i]);
 
-			System.out.println(" jugador " + (i + 1));
-			System.out.println("puntajes "); 
+			System.out.println(" jugador " + (i + 1) + " - Puntaje Total: " + puntuacionesTotal[i] + " , Promedio: " + promedios[i]);
+
+			if (puntuacionesTotal[i] > puntuacionmax) {
+				puntuacionmax = puntuacionesTotal[i];
+				jugadorganador = i; 
+			}
+			
 		}
+
+		System.out.println("El jugador con la puntuacion mas alta es: Jugador " + (jugadorganador + 1));
 		 
 
 	}
 	/**
-	 * Descripción: El método calcularSumaTotal permite ...
+	 * Descripción: El método calcularSumaTotal permite calcular los puntos de todos los jugadores en cada ronda
 	 * @param int[] numeros
 	 * @return 
 	 */
@@ -117,7 +124,7 @@ public class AtlasPuntuaciones {
 	
 
 	/**
-	 * Descripción: El método calcularPromedio permite ...
+	 * Descripción: El método calcularPromedio permite calcular el puntaje promedio de cada jugador
 	 * @param int[] numeros
 	 * @return 
 	 */
@@ -130,13 +137,24 @@ public class AtlasPuntuaciones {
 	}
 
 	/**
-	 * Descripción: El método encontrarMayor permite ...
+	 * Descripción: El método encontrarMayor permite encontrar el jugador con mayor puntaje acumulado
 	 * @param double[] numeros
 	 * @return 
 	 */
-    //public double encontrarMayor(double[] numeros) {
-        // Completar
-    //}
+    public double encontrarMayor(double[] numeros) {
+        if (numeros == null || numeros.length == 0) {
+			return 0.0;
+		}
+
+		double mayor = numeros[0];
+		for (double numero : numeros) {
+			if (numero > mayor) {
+				mayor = numero; 
+			}
+		}
+
+		return mayor;
+    }
 
 	
 
